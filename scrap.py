@@ -1,6 +1,7 @@
 # Importation des bibliothèques nécessaires
 import requests
 from bs4 import BeautifulSoup
+import pandas as pd
 
 # Définition de l'agent utilisateur (user-agent) pour les requêtes HTTP
 navigator = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1)'
@@ -25,7 +26,7 @@ note8 = notes[7].get_text()
 blagues_et_notes = {}
 
 # Boucle pour extraire les 20 premières blagues et notes
-for i in range(21):
+for i in range(20):
     # Extraire le texte de la blague à l'indice i
     blague = blagues[i].get_text()
 
@@ -36,5 +37,8 @@ for i in range(21):
     blagues_et_notes[blague] = note
 
 # Afficher le dictionnaire complet contenant les blagues et les notes
-print(blagues_et_notes)
+
+df = pd.DataFrame(list(blagues_et_notes.items()), columns=["blague", "note"])
+
+print(df)
 
